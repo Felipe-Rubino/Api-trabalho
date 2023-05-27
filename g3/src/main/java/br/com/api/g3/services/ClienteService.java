@@ -1,5 +1,6 @@
 package br.com.api.g3.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,8 @@ public class ClienteService {
 			endereco.setLogradouro(endCadastro.getLogradouro());
 			endereco.setNumero(clienteDTO.getNumero());
 			endereco.setUf(endCadastro.getUf());
-			//cliente.setEnderecos(endereco));
+			List<Endereco> enderecosCliente = new ArrayList<>();
+			cliente.setEnderecos(enderecosCliente);
 			enderecoRepository.save(endereco);
 			
 			return clienteRepository.save(cliente);

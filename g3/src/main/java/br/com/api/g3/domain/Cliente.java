@@ -91,6 +91,14 @@ public class Cliente {
 		this.ativo = ativo;
 	}
 
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+
 	
 
 	
