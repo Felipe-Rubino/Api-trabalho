@@ -1,10 +1,15 @@
 package br.com.api.g3.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,10 +30,18 @@ public class Produto {
     @Column(name="prod_nm_valor")
     private Double valor;
 
-    @Column(name="prod_int_estoque")
-    private int estoque;
+ 
+    @ManyToOne
+	@JoinColumn(name="fk_ped_cd_id")
+	private Pedido pedidoRel;
 
-    
+	@ManyToOne
+	@JoinColumn(name="fk_fun_cd_id")
+	private Funcionario funcionarioRel;
+
+	@OneToMany(mappedBy="produtoRel")
+	private List<Categoria> categoria;
+
 	public Long getProdutoId() {
 		return produtoId;
 	}
@@ -61,24 +74,17 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public int getEstoque() {
-		return estoque;
-	}
-
-	public void setEstoque(int estoque) {
-		this.estoque = estoque;
-	}
-
+	
 	public Produto() {
 		
 	}
 	
-	public Produto(Long produtoId, String nome, String descricao, Double valor, int estoque) {
+	public Produto(Long produtoId, String nome, String descricao, Double valor) {
 		this.produtoId = produtoId;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.valor = valor;
-		this.estoque = estoque;
+		
 	}
     
 

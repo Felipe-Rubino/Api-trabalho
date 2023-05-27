@@ -1,10 +1,13 @@
 package br.com.api.g3.domain;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,7 +17,7 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="end_cd_id")
-	private Integer enderecoId;
+	private Long enderecoId;
 	
 	@Column(name="end_tx_cep")
 	private String cep;
@@ -34,14 +37,14 @@ public class Endereco {
 	@Column(name="end_tx_num")
 	private String numero;
 	
-//	@OneToMany(mappedBy="endereco")
-//	private List<Cliente> clientes;
-		
+	@ManyToMany(mappedBy="enderecos")
+	private List<Cliente> clientes;
+
 	
 	public Endereco() {
 	}
 	
-	public Endereco(Integer enderecoId, String cep, String logradouro, String bairro, String localidade, String uf,
+	public Endereco(Long enderecoId, String cep, String logradouro, String bairro, String localidade, String uf,
 			String numero) {
 		this.enderecoId = enderecoId;
 		this.cep = cep;
@@ -52,11 +55,11 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public Integer getEnderecoId() {
+	public Long getEnderecoId() {
 		return enderecoId;
 	}
 
-	public void setEnderecoId(Integer enderecoId) {
+	public void setEnderecoId(Long enderecoId) {
 		this.enderecoId = enderecoId;
 	}
 
