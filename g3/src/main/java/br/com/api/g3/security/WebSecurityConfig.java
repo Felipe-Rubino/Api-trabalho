@@ -41,7 +41,7 @@ public class WebSecurityConfig {
             .exceptionHandling(handling -> handling.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/**", "/h2-console/**", "/roles/**").permitAll()
+                    .requestMatchers("/auth/**", "/h2-console/**", "/roles/**" ).permitAll()
                     .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/actuator/**").hasRole("ADMIN")
                     .requestMatchers("/test/user/**").hasAnyRole("USER", "ADMIN")
                     .anyRequest().authenticated())

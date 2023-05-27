@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name="categoria")
@@ -19,6 +21,10 @@ public class Categoria {
 	
 	@Column(name="cat_tx_desc")
 	private String descricao;
+
+	@ManyToOne
+	@JoinColumn(name="fk_prod_cd_id")
+	private Produto produtoRel;
 	
 	
 	public Categoria() {
