@@ -48,7 +48,7 @@ public class WebSecurityConfig {
                     .requestMatchers("/test/mod/**").hasRole("MODERATOR")
                     .anyRequest().authenticated())
 		;		
-		
+			
 		http.authenticationProvider(authenticationProvider());
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
