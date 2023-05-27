@@ -31,6 +31,18 @@ Independente da opção acima, os seguintes requisitos são obrigatórios:
 10.	ReadMe, Commits, Branches e Tags: Crie um ReadMe para documentar o projeto. Utilize commits, branches e tags seguindo o padrão
 
 ## Tecnologias utilizadas
+Neste projeto usamos as seguintes tecnologias:
+
+JAVA
+SPRINGBOOT
+Maven
+Spring-Data-JPA / Hibernate
+Swagger
+JWT - Json Web Token
+Postgres
+H2
+Eclipse / Sprint Tool Suite
+DBeaver
 
 ## Colaboradores
 ### Alunos
