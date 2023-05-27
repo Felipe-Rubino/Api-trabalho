@@ -6,5 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/enderecos")
 public class EnderecoController {
+		
 
 }

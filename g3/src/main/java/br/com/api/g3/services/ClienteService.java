@@ -42,7 +42,6 @@ public class ClienteService {
 			Map<String, String> params = new HashMap<>();	
 			params.put("cep", clienteDTO.getCep());
 			Endereco endCadastro = restTemplate.getForObject(uri, Endereco.class, params);
-			
 			Endereco endereco = new Endereco();
 			endereco.setBairro(endCadastro.getBairro());
 			endereco.setCep(clienteDTO.getCep());
