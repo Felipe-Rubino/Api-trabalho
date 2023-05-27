@@ -43,6 +43,7 @@ Neste projeto usamos as seguintes tecnologias:
 - H2
 - Eclipse / Sprint Tool Suite
 - DBeaver
+- Postman
 
 ## Colaboradores
 ### Alunos
