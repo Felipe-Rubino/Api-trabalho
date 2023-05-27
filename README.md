@@ -1,14 +1,14 @@
-#API_G3
-##Projeto de API para E-commerce
+# API_G3
+## Projeto de API para E-commerce
 Este projeto de API utiliza como base o banco de dados construído na disciplina de banco de dados.
-###Beans Iniciais
+### Beans Iniciais
 Para o e-commerce tradicional, os beans iniciais necessários são:
 •	Cliente
 •	Funcionário
 •	Pedido
 •	Produto
 •	Categoria
-###Requisitos Obrigatórios
+### Requisitos Obrigatórios
 Independente da opção acima, os seguintes requisitos são obrigatórios:
 1.	Pacotes: O projeto deve ser organizado nos seguintes pacotes:
 •	Config: Contém classes de configuração, como Swagger. Nome sugerido: NomeConfig.
