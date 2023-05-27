@@ -3,23 +3,23 @@
 Este projeto de API utiliza como base o banco de dados construído na disciplina de banco de dados.
 ### Beans Iniciais
 Para o e-commerce tradicional, os beans iniciais necessários são:
-•	Cliente
-•	Funcionário
-•	Pedido
-•	Produto
-•	Categoria
+- Cliente
+-	Funcionário
+-	Pedido
+-	Produto
+-	Categoria
 ### Requisitos Obrigatórios
 Independente da opção acima, os seguintes requisitos são obrigatórios:
 1.	Pacotes: O projeto deve ser organizado nos seguintes pacotes:
-•	Config: Contém classes de configuração, como Swagger. Nome sugerido: NomeConfig.
-•	Domain: Contém as classes bean, que representam as entidades do projeto. Nome sugerido: Nome.
-•	Repositories: Contém as interfaces para cada bean, responsáveis pelas queries de consulta no banco. Nome sugerido: NomeRepository.
-•	Services: Contém classes para cada repository, responsáveis pela lógica da requisição. Além disso, inclui classes extras que não possuem repository, como a classe EmailService. Nome sugerido: NomeService.
-•	Controllers: Contém classes de requisição, responsáveis por receber e dar retorno às requisições. Nome sugerido: NomeController.
-•	Exceptions: Contém classes de tratamento de exceções, responsáveis pelo retorno "amigável" dos erros enviados nas requisições de PUT e POST. Nome sugerido: NomeException.
-•	DTO: Contém classes que funcionam como filtros, facilitando o envio e retorno das requisições de PUT e POST. Nome sugerido: NomeDTO.
-•	Enums: Contém classes de constantes, facilitando a criação de combos (dropdown, checkbox, etc.) no frontend. Nome sugerido: NomeEnum.
-•	security, security.jwt, security.domain, security.repositories, security.services, security.controllers, security.dto: Pacotes extras relacionados à segurança.
+-	Config: Contém classes de configuração, como Swagger. Nome sugerido: NomeConfig.
+-	Domain: Contém as classes bean, que representam as entidades do projeto. Nome sugerido: Nome.
+-	Repositories: Contém as interfaces para cada bean, responsáveis pelas queries de consulta no banco. Nome sugerido: NomeRepository.
+-	Services: Contém classes para cada repository, responsáveis pela lógica da requisição. Além disso, inclui classes extras que não possuem repository, como a classe EmailService. Nome sugerido: NomeService.
+-	Controllers: Contém classes de requisição, responsáveis por receber e dar retorno às requisições. Nome sugerido: NomeController.
+-	Exceptions: Contém classes de tratamento de exceções, responsáveis pelo retorno "amigável" dos erros enviados nas requisições de PUT e POST. Nome sugerido: NomeException.
+-	DTO: Contém classes que funcionam como filtros, facilitando o envio e retorno das requisições de PUT e POST. Nome sugerido: NomeDTO.
+-	Enums: Contém classes de constantes, facilitando a criação de combos (dropdown, checkbox, etc.) no frontend. Nome sugerido: NomeEnum.
+-	security, security.jwt, security.domain, security.repositories, security.services, security.controllers, security.dto: Pacotes extras relacionados à segurança.
 2.	Validações nas classes bean: Adicione anotações de validação adequadas nas classes bean para garantir a consistência dos dados.
 3.	Construção do relacionamento nas classes bean: Verifique e implemente corretamente os relacionamentos entre as classes bean no banco de dados.
 4.	CRUD completo para cada controller: Crie operações CRUD (Create, Read, Update, Delete) completas para cada entidade na camada de controller.
