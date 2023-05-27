@@ -33,16 +33,16 @@ Independente da opção acima, os seguintes requisitos são obrigatórios:
 ## Tecnologias utilizadas
 Neste projeto usamos as seguintes tecnologias:
 
-JAVA
-SPRINGBOOT
-Maven
-Spring-Data-JPA / Hibernate
-Swagger
-JWT - Json Web Token
-Postgres
-H2
-Eclipse / Sprint Tool Suite
-DBeaver
+- JAVA
+- SPRINGBOOT
+- Maven
+- Spring-Data-JPA / Hibernate
+- Swagger
+- JWT - Json Web Token
+- Postgres
+- H2
+- Eclipse / Sprint Tool Suite
+- DBeaver
 
 ## Colaboradores
 ### Alunos
