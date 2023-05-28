@@ -72,6 +72,7 @@ public class ClienteController {
 	@PostMapping
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
+	@Operation( summary  = "Cadastrar novo cliente - USER", description = "Cadastro de clientes")
 	public Cliente cadastrarCliente(@RequestParam String email, @RequestBody ClienteDTO clienteDTO) throws MessagingException {
 		emailService.envioEmailCadastroC(email, clienteDTO);
 		return clienteService.cadastrarCliente(clienteDTO);
@@ -80,6 +81,7 @@ public class ClienteController {
 	@PutMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
+	@Operation( summary  = "Atualizar os clientes - USER", description = "Atualização de clientes")
 	public Cliente atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
 		return clienteService.atualizarCliente(cliente, id);
 	}
