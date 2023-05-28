@@ -35,7 +35,7 @@ public class SwaggerConfig {
 		
 		Contact contact = new Contact();
 		contact.setEmail("cpnnatalie@gmail.com");
-		contact.setName("Natalie");
+		contact.setName("Loja");
 		contact.setUrl("https://www.loja.com");
 		
 		License license = new License()
