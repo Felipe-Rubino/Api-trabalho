@@ -2,7 +2,7 @@ package br.com.api.g3.dto;
 
 public class FuncionarioDTO {
 	
-	
+	private Long funcionarioId;
 	private String nome;
 	private String email;
 	private boolean ativo;
@@ -18,12 +18,21 @@ public class FuncionarioDTO {
 	public FuncionarioDTO() {
 	}
 	
-	public FuncionarioDTO(String nome, String email) {
+	public FuncionarioDTO(Long funcionarioId,String nome, String email) {
 		
+		this.funcionarioId = funcionarioId;
 		this.nome = nome;
 		this.email = email;
 	}
 	
+	
+	
+	public Long getFuncionarioId() {
+		return funcionarioId;
+	}
+	public void setFuncionarioId(Long funcionarioId) {
+		this.funcionarioId = funcionarioId;
+	}
 	public String getEmail() {
 		return email;
 	}

@@ -1,6 +1,5 @@
 package br.com.api.g3.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,28 +66,22 @@ public class ProdutoController {
 		return ResponseEntity.notFound().build();
 	}
 
-
-//	@PostMapping
-//	public ResponseEntity<Object> create(@RequestBody Produto produto) {
-//		return ResponseEntity.status(HttpStatus.CREATED).body(produtoService.save(produto));
-//	}
 	
 	@PostMapping
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
 	@Operation( summary  = "Cadastrar novo Produto - ADMIN", description = "Cadastro de produtos")
-	public Object cadastrarCliente(@RequestParam String email, @RequestBody Produto produto) throws MessagingException {
-		return produtoService.save(produto);
+	public Object cadastrarProduto(@RequestParam String email, @RequestBody Produto produto) throws MessagingException {
+		return produtoService.cadastrarProduto(produto);
 	}
 	
 
-	@PutMapping
+	@PutMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	
 	@Operation( summary  = "Atualizar  Produto - ADMIN", description = "Atualização de produtos")
-	public ResponseEntity<Object> update(@RequestBody Produto product) {
-		return ResponseEntity.status(HttpStatus.OK).body(produtoService.update(product));
+	public ResponseEntity<Object> atualizarProduto(@RequestBody Produto produto, @PathVariable Long id) {
+		return ResponseEntity.status(HttpStatus.OK).body(produtoService.atualizarProduto(produto, id));
 	}
 
 	@DeleteMapping("/{id}")

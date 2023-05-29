@@ -26,15 +26,27 @@ public class FuncionarioService {
 		
 	}
 	
-	public FuncionarioDTO cadastrarFuncionario(Funcionario funcionario) {
+	public FuncionarioDTO cadastrarFuncionario(FuncionarioDTO funcionarioDTO) {
+		Funcionario funcionario = parseEntity(funcionarioDTO);
 		funcionarioRepository.save(funcionario);
-		   return parseDTO(funcionario);
-		}	
+		return parseDTO(funcionario);
+	}
 	
 	public FuncionarioDTO parseDTO(Funcionario funcionario) {
 		FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
+		funcionarioDTO.setFuncionarioId(funcionario.getFuncionarioId());
 		funcionarioDTO.setNome(funcionario.getNome());
+		funcionarioDTO.setEmail(funcionario.getEmail());
+		funcionarioDTO.setAtivo(funcionario.isAtivo());
 		return funcionarioDTO;
+	}
+	
+	public Funcionario parseEntity(FuncionarioDTO funcionarioDTO) {
+		Funcionario funcionario = new Funcionario();
+		funcionario.setEmail(funcionarioDTO.getEmail());
+		funcionario.setNome(funcionarioDTO.getNome());
+		funcionario.setAtivo(funcionarioDTO.isAtivo());
+		return funcionario;
 	}
 	
 	

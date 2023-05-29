@@ -23,5 +23,10 @@
     "name": "loja.swagger.dev-url",
     "type": "java.lang.String",
     "description": "A description for 'loja.swagger.dev-url'"
+  },
+  {
+    "name": "loja.swagger.dev-url",
+    "type": "java.lang.String",
+    "description": "A description for 'loja.swagger.dev-url'"
   }
 ]}
