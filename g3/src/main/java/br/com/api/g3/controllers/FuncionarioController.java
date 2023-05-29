@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -45,14 +46,14 @@ public class FuncionarioController {
 			@ApiResponse(responseCode= "200", description="Retorna todos os vendedores"),
 			@ApiResponse(responseCode= "401", description="Erro de autenticacao")
 	})
-	public List<Funcionario> listar() {
-		return funcionarioService.findAll();
+	public List<Funcionario> listar(Pageable page) { // paginação , size =Qty de dados que vai aparecer
+		return funcionarioService.findAll(page);
 	}
 
 	@GetMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Lista os Vendedores por ID - ADMIN", description = "Listagem dos vendedores")
+	@Operation( summary  = "Lista os Vendedores por ID - ADMIN", description = "Lista dos vendedores")
 	public ResponseEntity<Funcionario> procurarId(@PathVariable Long id){
 		Optional <Funcionario> opt = funcionarioService.findById(id);
 		if(opt.isPresent()) {

@@ -1,6 +1,5 @@
 package br.com.api.g3.services;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -16,28 +15,28 @@ import br.com.api.g3.repositories.EnderecoRepository;
 public class ClienteService {
 	@Autowired
 	ClienteRepository clienteRepository;
-	
+
 	@Autowired
 	EnderecoRepository enderecoRepository;
-	
+
 	@Autowired
 	EnderecoService enderecoService;
-	
-	public List<Cliente> findAll(){
+
+	public List<Cliente> findAll() {
 		return clienteRepository.findAll();
 	}
-	public Optional <Cliente> findById(Long id){
+
+	public Optional<Cliente> findById(Long id) {
 		return clienteRepository.findById(id);
-		
+
 	}
+
 	public Cliente cadastrarCliente(ClienteDTO clienteDTO) {
-			Cliente cliente = new Cliente();
-			cliente.setNome(clienteDTO.getNome());
-			cliente.setCpf(clienteDTO.getCpf());
-			cliente.setEmail(clienteDTO.getEmail());
-			cliente.setAtivo(clienteDTO.isAtivo());
-			
-			
+		Cliente cliente = new Cliente();
+		cliente.setNome(clienteDTO.getNome());
+		cliente.setCpf(clienteDTO.getCpf());
+		cliente.setEmail(clienteDTO.getEmail());
+		cliente.setAtivo(clienteDTO.isAtivo());
 //			RestTemplate restTemplate = new RestTemplate();
 //			String uri= "http://viacep.com.br/ws/{cep}/json";
 //			Map<String, String> params = new HashMap<>();	
@@ -50,16 +49,17 @@ public class ClienteService {
 //			endereco.setLogradouro(endCadastro.getLogradouro());
 //			endereco.setNumero(clienteDTO.getNumero());
 //			endereco.setUf(endCadastro.getUf());
-			//List<Endereco> enderecosCliente = new ArrayList<>();
-			//cliente.setEndereco(enderecosCliente);
-			cliente.CadastrarEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
-			enderecoService.adicionaEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
-			clienteRepository.save(cliente);
-			return clienteRepository.save(cliente);
-		}	
+//			List<Endereco> enderecosCliente = new ArrayList<>();
+//	 		cliente.setEndereco(enderecosCliente);
+		cliente.CadastrarEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
+		enderecoService.adicionaEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
+		clienteRepository.save(cliente);
+		return clienteRepository.save(cliente);
+	}
+
 	public Cliente atualizarCliente(Cliente clienteAtualizado, Long id) {
 		Optional<Cliente> opt = clienteRepository.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			Cliente clienteAntigo = opt.get();
 			clienteAntigo.setCpf(clienteAtualizado.getCpf());
 			clienteAntigo.setEmail(clienteAtualizado.getEmail());
@@ -70,13 +70,14 @@ public class ClienteService {
 		}
 		return null;
 	}
+
 	public void deletarCliente(Long id) {
 		Optional<Cliente> opt = clienteRepository.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			Cliente cliente = opt.get();
 			cliente.setAtivo(false);
 			clienteRepository.save(cliente);
 
 		}
 	}
-}	
+}
