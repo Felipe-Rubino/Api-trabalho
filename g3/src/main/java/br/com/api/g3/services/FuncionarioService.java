@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.api.g3.domain.Funcionario;
@@ -16,8 +17,8 @@ public class FuncionarioService {
 	FuncionarioRepository funcionarioRepository;
 	
 	
-	public List<Funcionario> findAll(){
-		return funcionarioRepository.findAll();
+	public List<Funcionario> findAll(Pageable page){ 
+		return funcionarioRepository.findAll(page).getContent();// repository do JPA .getContent 
 	}
 	
 	
