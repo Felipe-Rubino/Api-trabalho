@@ -5,8 +5,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import br.com.api.g3.domain.Funcionario;
+
 import br.com.api.g3.dto.ClienteDTO;
+import br.com.api.g3.dto.FuncionarioDTO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 @Service
@@ -51,7 +52,7 @@ public class EmailService {
 		}
 	}
 	
-	public void envioEmailCadastroF(String email, Funcionario funcionario) throws MessagingException {
+	public void envioEmailCadastroF(String email, FuncionarioDTO funcionarioDTO) throws MessagingException {
 		MimeMessage messageFuncionario = emailSender.createMimeMessage();
 		MimeMessageHelper helperFuncionario = new MimeMessageHelper(messageFuncionario, true);
 		
@@ -68,11 +69,11 @@ public class EmailService {
 			stringBuilder.append("          </div>\r\n");
 			stringBuilder.append("          <div>\r\n");
 			stringBuilder.append("          <br/>\r\n");
-			stringBuilder.append("        	 Nome: " + funcionario.getNome());
+			stringBuilder.append("        	 Nome: " + funcionarioDTO.getNome());
 			stringBuilder.append("          </div>\r\n");
 			stringBuilder.append("          <div>\r\n");
 			stringBuilder.append("          <br/>\r\n");
-			stringBuilder.append("           Status: " + funcionario.isAtivo());
+			stringBuilder.append("           Status: " + funcionarioDTO.isAtivo());
 			stringBuilder.append("          </div>\r\n");
 			stringBuilder.append("     </body>\r\n");
 			stringBuilder.append("</html>\r\n");

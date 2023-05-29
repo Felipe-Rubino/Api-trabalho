@@ -35,6 +35,8 @@ public class ClienteService {
 			cliente.setNome(clienteDTO.getNome());
 			cliente.setCpf(clienteDTO.getCpf());
 			cliente.setEmail(clienteDTO.getEmail());
+			cliente.setAtivo(clienteDTO.isAtivo());
+			
 			
 //			RestTemplate restTemplate = new RestTemplate();
 //			String uri= "http://viacep.com.br/ws/{cep}/json";

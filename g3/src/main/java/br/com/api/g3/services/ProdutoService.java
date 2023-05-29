@@ -1,5 +1,6 @@
 package br.com.api.g3.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +15,37 @@ public class ProdutoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 
-	public Object findAll() {
-		// TODO Auto-generated method stub
-		return produtoRepository.findAll();
-	}
+	public List<Produto> findAll(){
+        return produtoRepository.findAll();
+    }
 
-	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-		 produtoRepository.deleteById(id);
-		
-	}
 
-	public Object update(Produto produto) {
-		// TODO Auto-generated method stub
-		return produtoRepository.save(produto);
-	}
+    public Optional <Produto> findById(Long id){
+        return produtoRepository.findById(id);
 
-	public Object save(Produto produto) {
-		// TODO Auto-generated method stub
-		return produtoRepository.save(produto);
-	}
+    }
 
-	public Optional<Produto> findById(Long id) {
-		// TODO Auto-generated method stub
-		return produtoRepository.findById(id);
-	}
-	
-	
-}
+    public Produto cadastrarProduto(Produto produto) {
+
+           return produtoRepository.save(produto);
+        }
+
+
+    public Produto atualizarProduto(Produto produtoAtualizado, Long id) {
+        Optional<Produto> opt = produtoRepository.findById(id);
+        if(opt.isPresent()) {
+            Produto produtoAntigo = opt.get();
+            produtoAntigo.setNome(produtoAtualizado.getNome());
+            produtoAntigo.setDescricao(produtoAtualizado.getDescricao());
+            produtoAntigo.setValor(produtoAtualizado.getValor());
+            produtoRepository.save(produtoAntigo);
+        }
+        return null;
+    }
+
+    public void deleteById(Long id) {
+    	// TODO Auto-generated method stub
+    	produtoRepository.deleteById(id);
+
+        }
+    }

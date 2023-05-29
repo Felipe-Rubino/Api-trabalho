@@ -65,9 +65,9 @@ public class FuncionarioController {
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
 	@Operation( summary  = "Cadastrar um novo Vendedor - ADMIN", description = "Listagem dos vendedores")
-	public FuncionarioDTO cadastrarFuncionario(@Valid @RequestParam String email, @Valid @RequestBody Funcionario funcionario) throws MessagingException {
-		emailService.envioEmailCadastroF(email, funcionario);
-		return funcionarioService.cadastrarFuncionario(funcionario);
+	public FuncionarioDTO cadastrarFuncionario(@Valid @RequestParam String email, @Valid @RequestBody FuncionarioDTO funcionarioDTO) throws MessagingException {
+		emailService.envioEmailCadastroF(email, funcionarioDTO);
+		return funcionarioService.cadastrarFuncionario(funcionarioDTO);
 	}
 	
 	@PutMapping("/{id}")
