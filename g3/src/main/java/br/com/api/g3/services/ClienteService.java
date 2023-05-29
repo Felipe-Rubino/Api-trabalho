@@ -1,17 +1,13 @@
 package br.com.api.g3.services;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import br.com.api.g3.domain.Cliente;
-import br.com.api.g3.domain.Endereco;
 import br.com.api.g3.dto.ClienteDTO;
 import br.com.api.g3.repositories.ClienteRepository;
 import br.com.api.g3.repositories.EnderecoRepository;
@@ -23,6 +19,9 @@ public class ClienteService {
 	
 	@Autowired
 	EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	EnderecoService enderecoService;
 	
 	public List<Cliente> findAll(){
 		return clienteRepository.findAll();
@@ -37,22 +36,23 @@ public class ClienteService {
 			cliente.setCpf(clienteDTO.getCpf());
 			cliente.setEmail(clienteDTO.getEmail());
 			
-			RestTemplate restTemplate = new RestTemplate();
-			String uri= "http://viacep.com.br/ws/{cep}/json";
-			Map<String, String> params = new HashMap<>();	
-			params.put("cep", clienteDTO.getCep());
-			Endereco endCadastro = restTemplate.getForObject(uri, Endereco.class, params);
-			Endereco endereco = new Endereco();
-			endereco.setBairro(endCadastro.getBairro());
-			endereco.setCep(clienteDTO.getCep());
-			endereco.setLocalidade(endCadastro.getLocalidade());
-			endereco.setLogradouro(endCadastro.getLogradouro());
-			endereco.setNumero(clienteDTO.getNumero());
-			endereco.setUf(endCadastro.getUf());
-			List<Endereco> enderecosCliente = new ArrayList<>();
-			cliente.setEnderecos(enderecosCliente);
-			enderecoRepository.save(endereco);
-			
+//			RestTemplate restTemplate = new RestTemplate();
+//			String uri= "http://viacep.com.br/ws/{cep}/json";
+//			Map<String, String> params = new HashMap<>();	
+//			params.put("cep", clienteDTO.getCep());
+//			Endereco endCadastro = restTemplate.getForObject(uri, Endereco.class, params);
+//			Endereco endereco = new Endereco();
+//			endereco.setBairro(endCadastro.getBairro());
+//			endereco.setCep(clienteDTO.getCep());
+//			endereco.setLocalidade(endCadastro.getLocalidade());
+//			endereco.setLogradouro(endCadastro.getLogradouro());
+//			endereco.setNumero(clienteDTO.getNumero());
+//			endereco.setUf(endCadastro.getUf());
+			//List<Endereco> enderecosCliente = new ArrayList<>();
+			//cliente.setEndereco(enderecosCliente);
+			cliente.CadastrarEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
+			enderecoService.adicionaEndereco(enderecoService.buscaCep(clienteDTO.getCep()));
+			clienteRepository.save(cliente);
 			return clienteRepository.save(cliente);
 		}	
 	public Cliente atualizarCliente(Cliente clienteAtualizado, Long id) {

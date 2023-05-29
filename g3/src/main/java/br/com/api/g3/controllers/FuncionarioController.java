@@ -40,7 +40,7 @@ public class FuncionarioController {
 	@GetMapping("/listar")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Lista todos os vendedores- ADMIN", description = "Cadastro de vendedores")
+	@Operation( summary  = "Lista todos os Vendedores- ADMIN", description = "Cadastro de vendedores")
 	@ApiResponses( value = {
 			@ApiResponse(responseCode= "200", description="Retorna todos os vendedores"),
 			@ApiResponse(responseCode= "401", description="Erro de autenticacao")
@@ -52,7 +52,7 @@ public class FuncionarioController {
 	@GetMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Lista os vendedores por ID - ADMIN", description = "Listagem dos vendedores")
+	@Operation( summary  = "Lista os Vendedores por ID - ADMIN", description = "Listagem dos vendedores")
 	public ResponseEntity<Funcionario> procurarId(@PathVariable Long id){
 		Optional <Funcionario> opt = funcionarioService.findById(id);
 		if(opt.isPresent()) {

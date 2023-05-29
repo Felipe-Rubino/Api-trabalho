@@ -47,7 +47,7 @@ public class ClienteController {
 	@GetMapping("/listar")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Lista todos os clientes - USER", description = "Listagem de clientes")
+	@Operation( summary  = "Lista todos os Clientes - ADMIN", description = "Listagem de clientes")
 	@ApiResponses( value = {
 			@ApiResponse(responseCode= "200", description="Retorna todos os clientes"),
 			@ApiResponse(responseCode= "401", description="Erro de autenticacao")
@@ -58,8 +58,8 @@ public class ClienteController {
 
 	@GetMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
-	@PreAuthorize("hasRole('USER')")
-	@Operation( summary  = "Lista de clientes por Id - USER", description = "Lista por Id")
+	@PreAuthorize("hasRole('ADMIN')")
+	@Operation( summary  = "Lista de Clientes por Id - ADMIN", description = "Lista por Id")
 	public ResponseEntity<Cliente> procurarId(@PathVariable Long id){
 		Optional <Cliente> opt = clienteService.findById(id);
 		if(opt.isPresent()) {
@@ -72,7 +72,7 @@ public class ClienteController {
 	@PostMapping
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Cadastrar novo cliente - USER", description = "Cadastro de clientes")
+	@Operation( summary  = "Cadastrar novo Cliente - ADMIN", description = "Cadastro de clientes")
 	public Cliente cadastrarCliente(@RequestParam String email, @RequestBody ClienteDTO clienteDTO) throws MessagingException {
 		emailService.envioEmailCadastroC(email, clienteDTO);
 		return clienteService.cadastrarCliente(clienteDTO);
@@ -81,7 +81,7 @@ public class ClienteController {
 	@PutMapping("/{id}")
 	@SecurityRequirement(name="Bearer Auth")
 	@PreAuthorize("hasRole('ADMIN')")
-	@Operation( summary  = "Atualizar os clientes - USER", description = "Atualização de clientes")
+	@Operation( summary  = "Atualizar os Clientes - ADMIN", description = "Atualização de clientes")
 	public Cliente atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
 		return clienteService.atualizarCliente(cliente, id);
 	}
@@ -94,9 +94,5 @@ public class ClienteController {
 		clienteService.deletarCliente(id);
 	
 	}
-	
-	
-	
-	
 	
 }

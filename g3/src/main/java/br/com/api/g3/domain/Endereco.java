@@ -2,6 +2,9 @@ package br.com.api.g3.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "enderecoId", scope = Endereco.class)//evitar repetição
 @Entity
 @Table(name="endereco")
 public class Endereco {
@@ -37,10 +41,18 @@ public class Endereco {
 	@Column(name="end_tx_num")
 	private String numero;
 	
-	@ManyToMany(mappedBy="enderecos")
+	@ManyToMany(mappedBy="endereco")
 	private List<Cliente> clientes;
 
 	
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
 	public Endereco() {
 	}
 	

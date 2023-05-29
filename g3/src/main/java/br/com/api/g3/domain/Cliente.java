@@ -1,7 +1,12 @@
 package br.com.api.g3.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +17,11 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "clienteId", scope = Cliente.class)
 @Entity
 @Table(name = "cliente")
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cli_cd_id")
@@ -33,22 +39,27 @@ public class Cliente {
 	@Column(name = "cli_bl_ativo")
 	private boolean ativo;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "cliente_endereco", joinColumns = @JoinColumn(name = "fk_cli_cd_id"), inverseJoinColumns = @JoinColumn(name = "fk_end_cd_id"))
-	private List<Endereco> enderecos;
-	
-	
+	private List<Endereco> endereco;
+
 	public Cliente() {
+		this.endereco = new ArrayList<Endereco>();
+	}
+
+	public void CadastrarEndereco(Endereco endereco) {
+		this.endereco.add(endereco);
 
 	}
 
-	public Cliente(Long clienteId, String nome, String cpf, String email, boolean ativo) {
+	public Cliente(Long clienteId, String nome, String cpf, String email, boolean ativo, List<Endereco> endereco) {
 		super();
 		this.clienteId = clienteId;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.ativo = ativo;
+		this.endereco = endereco;
 	}
 
 	public Long getClienteId() {
@@ -91,22 +102,12 @@ public class Cliente {
 		this.ativo = ativo;
 	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+	public List<Endereco> getEndereco() {
+		return endereco;
 	}
 
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	public void setEndereco(List<Endereco> enderecos) {
+		this.endereco = enderecos;
 	}
 
-	
-
-	
-
-	
-
-
-
-
-	
 }
